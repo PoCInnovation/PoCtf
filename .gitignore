@@ -4,3 +4,10 @@ lib64
 lib/
 pip-selfcheck.json
 .vscode/
+
+vgcore.*
+.gdb_history
+peda-session-a.out.txt
+
+a.out
+challenge
