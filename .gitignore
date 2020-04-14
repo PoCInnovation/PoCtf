@@ -7,7 +7,7 @@ pip-selfcheck.json
 
 vgcore.*
 .gdb_history
-peda-session-a.out.txt
+peda-session-*.txt
 
 a.out
 challenge
