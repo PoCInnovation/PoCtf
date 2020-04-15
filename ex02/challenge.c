@@ -1,16 +1,15 @@
 #include <stdio.h>
 
 const char *flag = "PoC{ex02}\n";
-const char *dummy = "How did you get here ?\n";
 
 void gadget(void)
 {
     __asm__("ret\n"
-            "pop %rdi\n\t" // <---- jump here
+            "pop %rdi\n\t"
             "ret\n\t");
 }
 
-void call_this(void) { printf(dummy); }
+void call_this(void) { printf("How did you get here ?\n"); }
 
 void abuse_me(void)
 {
