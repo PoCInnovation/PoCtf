@@ -9,7 +9,7 @@ void gadget(void)
             "ret\n\t");
 }
 
-void call_this(void) { printf("How did you get here ?\n"); }
+void call_this(void) { puts("How did you get here ?\n"); }
 
 void abuse_me(void)
 {
@@ -17,8 +17,4 @@ void abuse_me(void)
     fgets(buf, 64, stdin);
 }
 
-int main(void)
-{
-    abuse_me();
-    return 0;
-}
+void main(void) { abuse_me(); }
