@@ -1,0 +1,10 @@
+# virtual-env
+bin/
+include/
+lib64
+lib/
+pip-selfcheck.json
+
+# gdb
+.gdb_history
+peda-session-*.txt
