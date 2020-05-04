@@ -1,5 +1,5 @@
 all:
-	${CC} ./challenge.c -o challenge
+	${CC} ./challenge.c -o ../challenge
 
 solve:
 	@./solve.py

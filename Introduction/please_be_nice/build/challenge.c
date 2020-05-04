@@ -1,6 +1,13 @@
 #include <stdio.h>
 
-void call_this(void) { puts("PoC{ex01}"); }
+void call_this(void)
+{
+    char buf[100];
+    FILE *fp = fopen("flag.txt", "r");
+
+    fgets(buf, 100, fp);
+    printf(buf);
+}
 
 void abuse_me(void)
 {
