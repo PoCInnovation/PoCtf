@@ -2,6 +2,7 @@ FROM frolvlad/alpine-glibc
 
 RUN apk add socat
 
+COPY flag.txt  /home/user/flag.txt
 COPY challenge /home/user/challenge
 RUN chmod 0001 /home/user/challenge
 
