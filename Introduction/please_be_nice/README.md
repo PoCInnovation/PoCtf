@@ -12,3 +12,4 @@ solve:
 supply:
 - (source) challenge.c (it's an intro)
 - (binary) challenge (for adresses)
+- challenge address:port
