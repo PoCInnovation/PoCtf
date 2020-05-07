@@ -26,6 +26,7 @@ void abuse_me(void)
 
 void main(void)
 {
+    setlinebuf(stdout);
     abuse_me();
     print_file("dummy.txt");
 }
