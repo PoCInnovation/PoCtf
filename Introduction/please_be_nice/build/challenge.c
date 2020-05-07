@@ -18,6 +18,7 @@ void abuse_me(void)
 
 int main(void)
 {
+    setlinebuf(stdout);
     abuse_me();
     puts("Is that it ?");
 }
