@@ -52,12 +52,13 @@ void read_inp(void)
     char buffer[32];
 
     printf("What is your name ?\n");
-    fgets(buffer, 65, stdin);
+    read(0, buffer, 64);
     printf("your name is %s\n", buffer);
 }
 
 int main(void)
 {
+    setlinebuf(stdout);
     flag = calloc(25, sizeof(char));
     read_inp();
     free(flag);

