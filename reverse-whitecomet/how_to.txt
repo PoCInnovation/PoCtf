@@ -1,0 +1,24 @@
+Vault: Trouver la clés d'encryption du segment unix
+
+	--> La clés se trouve dans le segment PoC_key et peut être récupérer avec
+	    un `objdump -s -j .PoC_key Vault`
+	
+	--> la génération de la clés est fixe
+
+	--> flag: PoC{401ac3 eb318b10 65db1b94 be64fcd3 66bb9f1c 401ad3 49}
+
+
+Robbery: Quel est l'instruction se trouvant à l'offset 401b01 ?
+
+	--> L'offset 401b31 se trouve dans la fonction payload() qui n'est jamais appelé.
+
+	--> Cette offset n'existe pas forcement quand la fonction est crypté
+
+	--> la génération de la clés est aléatoire
+
+	--> Résolution : • Trouver la section crypté -> payload()
+			 • Executer le code avec gdb
+			 • Une fois la fonction déchiffré après l'appel de la fonction decode_and_crypt()
+		           Mettre un break dans payload et jump dessus ou faire un pdissas de payload()
+
+	--> flag: PoC{call_0x401190_<socket@plt>}
