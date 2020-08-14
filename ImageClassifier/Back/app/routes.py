@@ -2,6 +2,15 @@ from app import app
 import flask
 from flask import make_response, jsonify, request, abort
 from flask_cors import CORS
+from tensorflow.keras.models import model_from_json
+from tensorflow.keras.optimizers import RMSprop
+import numpy as np
+from PIL import Image
+from skimage import transform
+from tensorflow.compat.v1 import ConfigProto
+from tensorflow.compat.v1 import InteractiveSession
+
+
 
 CORS(app)
 
@@ -19,13 +28,6 @@ def index():
 @app.route('/api/uploadfile', methods=['POST'])
 def test_image():
     data = flask.request.files["myFile"]
-    from tensorflow.keras.models import model_from_json
-    from tensorflow.keras.optimizers import RMSprop
-    import numpy as np
-    from PIL import Image
-    from skimage import transform
-    from tensorflow.compat.v1 import ConfigProto
-    from tensorflow.compat.v1 import InteractiveSession
 
     config = ConfigProto()
     config.gpu_options.allow_growth = True
@@ -72,3 +74,9 @@ def test_image():
         return make_response(jsonify({'NOPE': "Nope, you couldnt make him a cat :/"}), 200)
     else:
         return make_response(jsonify({'flag': 'PoC{WpH3I5aRe4LC4TN0w}'}), 200)
+
+@app.after_request
+def add_headers(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    return response

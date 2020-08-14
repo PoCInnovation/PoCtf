@@ -40,7 +40,7 @@ class App extends Component {
 
         // Request made to the backend api
         // Send formData object
-        axios.post("http://127.0.0.1:5000/api/uploadfile", formData).then((response) => {
+        axios.post("http://51.158.113.61:5001/api/uploadfile", formData).then((response) => {
             this.setState({flag : response.data});
           }, (error) => {
             console.log(error);
