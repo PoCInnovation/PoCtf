@@ -31,13 +31,13 @@ def load(img):
         pixels1 = np_image.getdata()
         pixels2 = real_image.getdata()
         counter = 0
-        if len(pixels1) != len(pixels2):
-            return ["not same picture"]
-        for i in range(len(pixels1)):
-            if pixels1[i] != pixels2[i]:
-                counter += 1
-        if counter > 15:
-            return ["not original"] 
+        #if len(pixels1) != len(pixels2):
+         #   return ["not same picture"]
+        #for i in range(len(pixels1)):
+         #   if pixels1[i] != pixels2[i]:
+          #      counter += 1
+        #if counter > 15:
+         #   return ["not original"] 
         np_image = np.array(np_image).astype('float32') / 255
         np_image = transform.resize(np_image, (200, 200, 3))
         np_image = np.expand_dims(np_image, axis=0)

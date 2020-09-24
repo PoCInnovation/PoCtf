@@ -38,7 +38,7 @@ pad = b'p' * 8
 buf = b'a' * 40
 f = vulnerablefunc
 
-p = remote("localhost", 1102) #process("./challenge") # 
+p = remote("poctf-beta.poc-innovation.com", 1102) #process("./challenge") # 
 
 # write % to key
 gogo = b''
