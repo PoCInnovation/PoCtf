@@ -40,7 +40,7 @@ class App extends Component {
 
         // Request made to the backend api
         // Send formData object
-        axios.post("http://51.158.113.61:5001/api/uploadfile", formData).then((response) => {
+        axios.post("http://localhost:3555/api/uploadfile", formData).then((response) => {
             this.setState({flag : response.data});
           }, (error) => {
             console.log(error);
@@ -93,7 +93,7 @@ class App extends Component {
                     Upload the image of my dog, and make him a cat.<br/>
                     If it's not my dog i'll know it ! (I've got the best<br/>
                     image verification my dev could do ! It can say if you<br/>
-                    changed more than 15 pixels on a pictures ! AHAHAHAHAHAHA !)<br/>
+                    changed more than 20 pixels on a pictures ! AHAHAHAHAHAHA !)<br/>
                 </h3>
                 <div>
                     <input type="file" onChange={this.onFileChange} />

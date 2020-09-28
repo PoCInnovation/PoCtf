@@ -55,7 +55,7 @@ def test_image():
         for i in range(len(pixels1)):
             if pixels1[i] != pixels2[i]:
                 counter += 1
-        if counter > 15:
+        if counter > 20:
             return ["not original"] 
         np_image = np.array(np_image).astype('float32') / 255
         np_image = transform.resize(np_image, (200, 200, 3))
