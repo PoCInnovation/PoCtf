@@ -1,0 +1,33 @@
+p = random_prime(2**2048)
+q = random_prime(2**2048)
+n = p*q
+phi = (p-1)*(q-1)
+
+print "P=", p
+print "N=", n
+for e2 in xrange(101,10000,2):
+    if gcd(e2, phi) == 1:
+        e = e2
+        break
+
+d = int(1/Mod(e,phi))
+print "D=", d
+msg=7234445860811998888894854461061247835779427157582247301477742172202413024124933718115009771975737882841181755216689090530470746758579813308017015199202720
+print "e=",e,"M=",msg
+
+m1 = power_mod(msg,d,p)
+m2 = power_mod(msg,d,q)
+
+m2err=m2^^(2^randint(1,2047))
+s=crt([m1, m2err], [p,q])
+ns = crt ([m1, m2], [p,q])
+
+print "S=", s
+print "NS=", ns
+
+new_p = gcd((pow(s, e) - msg), n)
+new_q = n / new_p
+new_phi = (new_p - 1) * (new_q - 1)
+print "New_p=", new_p
+
+new_d = int(1/Mod(e, new_phi))
