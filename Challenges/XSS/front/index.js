@@ -1,14 +1,13 @@
 const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser');
-const { REPL_MODE_STRICT } = require('repl');
 
 const badwords = ["onactivate",
   "onafterprint",
   "onafterscriptexecute",
   "onanimationcancel",
   "onanimationend",
-  "onanimationiteration",
+  "onanimationstart",
   "onauxclick",
   "onbeforeactivate",
   "onbeforecopy",
@@ -164,7 +163,6 @@ const badwords = ["onactivate",
   "font",
   "footer",
   "form",
-  "frame",
   "frameset",
   "head",
   "header",
@@ -243,25 +241,26 @@ app.use(express.urlencoded())
 app.use(cookieParser());
 
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(path.join(__dirname + "/sqlite/mdr.db"));
+var db = new sqlite3.Database(path.join(__dirname + "/schema.sqlite"));
 
 db.run("CREATE TABLE IF NOT EXISTS reports (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, `description` CHAR(256) NOT NULL, `read` BOOLEAN default 0)")
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname + "/html/form.html"))
+    res.sendFile(path.join(__dirname + "/form.html"))
 })
-  
+
 app.post('/tickets', function (req, res) {
-    request = "INSERT INTO reports (description) VALUES (?);"
     my_value = req.body.description
+    request = "INSERT INTO reports (description) VALUES (?);"
     values = [my_value]
     bad = false;
     console.log(my_value)
-    
+
     for (const word in badwords)
-      if (my_value.toLowerCase().includes(badwords[word]))
-        bad = true;
-    
+      if (my_value.toLowerCase().includes(badwords[word])){
+        console.log(badwords[word], "is bad")
+        bad = true;}
+
     res.status(406);
     if (!bad) {
       res.status(202); 
@@ -273,7 +272,7 @@ app.post('/tickets', function (req, res) {
         console.log(`A row has been inserted with rowid ${this.lastID}`);
       })
     }
-    res.sendFile(path.join(__dirname + "/html/form.html"))
+    res.sendFile(path.join(__dirname + "/form.html"))
 })
 
 app.get('/admin', function (req, res) {

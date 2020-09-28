@@ -27,10 +27,22 @@ services:
       - "1102:8080"
     restart: always
 
-## uncomment to create internal network
-## (all container can communicate,
-##   nice for challenges composed of multiples containers)
-# networks:
-#     default:
-#     internal:
-#       internal: true
+  ### XSS - 1200
+
+  # Front
+  front:
+    build: "./XSS/front"
+    ports:
+      - "1201:3000"
+    networks:
+      - xss
+
+  # Bot
+  bot:
+    build: "./XSS/bot"
+    restart: always
+    networks:
+      - xss
+
+networks:
+    xss:
