@@ -1,0 +1,4 @@
+Un homme arrive sur son ordinateur et voit que le bluetooth est activé alors que cela n'arrive jamais.
+Il s'aperçoit ensuite que cela arrive régulièrement et décide donc de faire une capture un jour de son bluetooth.
+Avec la capture retrouvez les informations que l'assaillant a volé, parmi ces informations, il se trouve le flag dans le fichier "Login Data"
+faisant référence au nom du fichier de Google Chrome qui contient les indentifiants enregistrés.

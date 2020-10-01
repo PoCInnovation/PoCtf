@@ -1,0 +1,16 @@
+{
+  "name": "front",
+  "version": "1.0.0",
+  "description": "Front that allows to report a bug, xss vulnerable",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.0"
+  },
+  "author": "",
+  "license": "MIT"
+}
