@@ -6,9 +6,9 @@ This is an x64 ELF
 
 ### Subject - for students
 
-Polymorphic based on sections.
+Polymorphism based on sections.
 
-Find the Unix segment's encryption key.
+Find the encryption key in the ELF sections.
 
 Flag format: `PoC{key}`
 
@@ -44,11 +44,11 @@ This is an x64 ELF
 
 ### Subject - for students
 
-Find the real instruction that is executed at offset `401ad1`.
+Find the real instruction at offset `401ad1`.
 
 Flag format: `PoC{ins}`
 
-`ins` is the instruction and it's operand(s), as seen in a disassambler. Any separator is allowed.
+`ins` is the instruction and it's operand(s), as seen in a disassambler.
 
 **hint 1**
 This instruction is found in a malicious function.
