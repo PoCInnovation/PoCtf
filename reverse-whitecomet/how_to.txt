@@ -5,7 +5,24 @@ Vault: Trouver la clés d'encryption du segment unix
 	
 	--> la génération de la clés est fixe
 
-	--> flag: PoC{401ac3 eb318b10 65db1b94 be64fcd3 66bb9f1c 401ad3 49}
+	--> flag: PoC{401ac3 eb318b10 65db1b94 be64fcd3 66bb9f1c 401ad3 49} XXXXXXX
+	--> flag: PoC{4040c0 bf7a03f6 dbe73cd5 bf8d9427 9a451042 8b}
+
+
+ELF
+disclaimer: polymorphisme se base sur les sections
+ils vont essayer de chequer les sections, et voir PoC_key
+
+a chaque execution: génération d'une clé. (toujours le même)
+
+exo initiation
+pour leur montrer qu'un fichier peut se modifier. Leur montrer qu'il y a des sections et qu'on peut écrire dedans.
+Il vire sa PoC_Key, et le récréer (mais c'est la même qu'avant)
+
+
+
+-------------------------------------------------------------------------------------
+
 
 
 Robbery: Quel est l'instruction se trouvant à l'offset 401b01 ?
@@ -22,3 +39,38 @@ Robbery: Quel est l'instruction se trouvant à l'offset 401b01 ?
 		           Mettre un break dans payload et jump dessus ou faire un pdissas de payload()
 
 	--> flag: PoC{call_0x401190_<socket@plt>}
+
+
+ELF
+disclaimer: polymorphisme blabla
+
+possible hint:
+cette se trouve dans une fonciton malvaillante
+
+chaque exec: la clé change réellement
+addresse existe pas. il faut Executer le binaire pour qu'il se déchiffre
+il se réencrypte après.
+Il execute le truc déchiffré dans la mémoire
+
+but: Trouver le code malvaillent, (dans payload)
+payload est jamais appelé
+C'est à la personne de sauter sur l'addresse quand la fonctio "decode" a été éxecuté
+
+
+
+execution parfaite
+cherche dans quelle fonction dse trouve l'offset, mais voit quelle existe pas
+
+
+a parti de là, pdissas, mais on voit qu'elle est encryptée
+on voit la fonciton qui décrypte
+quand elle est lancé, nouveau pdisas de payload, et trouver l'offset 401b01 -> flag
+
+
+
+
+
+autre execution:
+ils savent, avec l'exo précédent, la cle de decryption
+ils peuvent déchiffrer eux meme la fonction (avec xor)
+(car fonction xoré avec la clé)
