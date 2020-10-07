@@ -1,0 +1,6 @@
+services:
+	front:
+		
+	back:
+networks:
+	IA:
