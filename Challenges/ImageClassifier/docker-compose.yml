@@ -1,6 +1,20 @@
+version: '3.0'
+
 services:
-	front:
-		
-	back:
+    back:
+        restart: always
+        build: ./Back
+        ports:
+            - "3555:5001"
+        networks:
+            - iaclassifer
+
+    front:
+        restart: always
+        build: ./Front
+        ports:
+            - "3556:5000"
+        networks:
+            - iaclassifer
 networks:
-	IA:
+    iaclassifer:

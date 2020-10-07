@@ -8,4 +8,4 @@ EXPOSE 5000
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt --use-feature=2020-resolver
-CMD ["flask", "run"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5001"]

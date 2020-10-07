@@ -45,6 +45,6 @@ async function visitPage(url, sleepTime) {
 sleepTime = 1000;
 
 setInterval(() => {
-  url = "http://localhost:3000/admin";
+  url = "http://front:3000/admin";
   visitPage(url, sleepTime);
 }, sleepTime * 5);
