@@ -11,6 +11,12 @@ To focus only on the process of making challenges, we used [CTFd](https://github
 
 You can access the platform  and the challenges with this URL: [https://poctf-beta.poc-innovation.com](https://poctf-beta.poc-innovation.com)
 ## Challenges
+### Introduction
+
+We made 2 introduction challenges: 
+ - BIP: An audio file that you have to analyse in order to get the flag from it.
+ - Find me if you can: This challenge is a GEOINT challenge. You give you an image, and you have to find in which city the photo was taken.
+
 ### ROP
 **R**eturn-**o**riented **p**rogramming (**ROP**) is a computer security exploit technique that allows an attacker to execute code in the presence of security defenses such as executable space protection and code signing.
 
@@ -38,6 +44,19 @@ We made 3 Reverse Engineering challenges:
  - Robbery: This time we made a polymorphic AND metamorphic binary. We want you to find what is the real instruction at offset 401ad1. Our binary is tricky, it changes it's hash and instructions everytime you run it.
  - Reverse PCAP: We give you a binary that acts like a virus by sending files to someone. You don't need to run the virus but only to reverse it in order to understand how he is encrypting the files. Once you've done that, you will have to inspect the pcapng capture in order to find the malicious data packets in order to decrypt their data.
 
- 
+ ###  Steganography
+ Steganography is the use of various methods to hide information from unwanted eyes. In ancient times, steganography was mostly done physically.
 
+For our steganography challenges we used a method called polyglot files.
+Polyglots, in a security context, are files that are a valid form of multiple different file types. For example, a  [GIFAR](https://en.wikipedia.org/wiki/Gifar)  is both a GIF and a RAR file. There are also files out there that can be both GIF and JS, both PPT and JS, etc.
+
+Polyglot files are often used to bypass protection based on file types. Many applications that allow users to upload files only allow uploads of certain types, such as JPEG, GIF, DOC, so as to prevent users from uploading potentially dangerous files like JS files, PHP files or Phar files.
+
+For this occasion we made Ditto. A file that can be interpreted as numerous format in order to introduce you to this practice.
+
+Ditto has 3 main challenges in order to find three flags hidden in the file. The challenges are:
+
+ - Upsidedown Relic
+ - Opened Relic
+ - The Archives
 
