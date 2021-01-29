@@ -14,25 +14,25 @@ You can access the platform  and the challenges with this URL: [https://poctf-be
 ### Introduction
 
 We made 2 introduction challenges: 
- - BIP: An audio file that you have to analyse in order to get the flag from it.
- - Find me if you can: This challenge is a GEOINT challenge. You give you an image, and you have to find in which city the photo was taken.
+ - **BIP**: An audio file that you have to analyse in order to get the flag from it.
+ - **Find me if you can**: This challenge is a GEOINT challenge. You give you an image, and you have to find in which city the photo was taken.
 
 ### ROP
 **R**eturn-**o**riented **p**rogramming (**ROP**) is a computer security exploit technique that allows an attacker to execute code in the presence of security defenses such as executable space protection and code signing.
 
 We made 3 ROP challenges: 
- - Please be nice: An introduction challenge in order to give you the base of ROP.
- - Abyse me: An intermediate challenge which need you to use harder breach in the binary in order to get the data that you need in order to flag the challenge.
- - Inspector Gadget: A very hard challenge, here to make you a master in ROP if you can access the flag that we hide in it.
+ - **Please be nice**: An introduction challenge in order to give you the base of ROP.
+ - **Abuse me**: An intermediate challenge which need you to use harder breach in the binary in order to get the data that you need in order to flag the challenge.
+ - **Inspector Gadget**: A very hard challenge, here to make you a master in ROP if you can access the flag that we hide in it.
 
 ### Cryptography
 Cryptography is a method of protecting information and communications through the use of codes, so that only those for whom the information is intended can read and process it. The prefix "crypt-" means "hidden" or "vault" -- and the suffix "-graphy" stands for "writing."
 
 We made 3 Cryptography challenges: 
 
- - RSA Fault: In this challenge you will need to use a breach in the implementation of the RSA encrypting process in order to hack the given key and access the flag.
- - Remote classes: A friend of you made you a little prank by encrypting your school pdf. You will need to find how to access the data in the file. Be careful, it's not because the filename ends with `.pdf` that it is a pdf. :)
- - RSA Cracker: In this challenge we want you to hack a 512 RSA public key in order to give us the flag in `flag.txt`.
+ - **RSA Fault**: In this challenge you will need to use a breach in the implementation of the RSA encrypting process in order to hack the given key and access the flag.
+ - **Remote classes**: A friend of you made you a little prank by encrypting your school pdf. You will need to find how to access the data in the file. Be careful, it's not because the filename ends with `.pdf` that it is a pdf. :)
+ - **RSA Cracker**: In this challenge we want you to hack a 512 RSA public key in order to give us the flag in `flag.txt`.
 
 ###  Reverse Engineering
   
@@ -40,9 +40,9 @@ Reverse engineering, sometimes called back engineering, is a process in which so
 
 We made 3 Reverse Engineering challenges: 
 
- - Vault: We made a polymorphic binary and now we want you to inspect it in order to find the data we hide in the ELF sections.
- - Robbery: This time we made a polymorphic AND metamorphic binary. We want you to find what is the real instruction at offset 401ad1. Our binary is tricky, it changes it's hash and instructions everytime you run it.
- - Reverse PCAP: We give you a binary that acts like a virus by sending files to someone. You don't need to run the virus but only to reverse it in order to understand how he is encrypting the files. Once you've done that, you will have to inspect the pcapng capture in order to find the malicious data packets in order to decrypt their data.
+ - **Vault**: We made a polymorphic binary and now we want you to inspect it in order to find the data we hide in the ELF sections.
+ -**Robbery**: This time we made a polymorphic AND metamorphic binary. We want you to find what is the real instruction at offset 401ad1. Our binary is tricky, it changes it's hash and instructions everytime you run it.
+ - **Reverse PCAP**: We give you a binary that acts like a virus by sending files to someone. You don't need to run the virus but only to reverse it in order to understand how he is encrypting the files. Once you've done that, you will have to inspect the pcapng capture in order to find the malicious data packets in order to decrypt their data.
 
  ###  Steganography
  Steganography is the use of various methods to hide information from unwanted eyes. In ancient times, steganography was mostly done physically.
@@ -56,7 +56,7 @@ For this occasion we made Ditto. A file that can be interpreted as numerous form
 
 Ditto has 3 main challenges in order to find three flags hidden in the file. The challenges are:
 
- - Upsidedown Relic
- - Opened Relic
- - The Archives
+ - **Upsidedown Relic**
+ - **Opened Relic**
+ - **The Archives**
 
