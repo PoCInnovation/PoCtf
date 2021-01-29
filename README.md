@@ -2,7 +2,7 @@
 
 ## Introduction
 
-POCTF is a CTF made by PoC Innovation. The goal of this project is to make a CTF with few challenges (~10) but to work all challenges with a very specific attention to detail. All challenges are made to be innovative.
+POCTF is a CTF made by PoC Innovation. The goal of this project is to make a CTF with few challenges (~12) but to work all challenges with a very specific attention to detail. All challenges are made to be innovative.
 
 ## Platform
 
