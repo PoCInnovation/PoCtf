@@ -1,5 +1,3 @@
-version: "3"
-
 services:
 
   ### INTRODUCTION - 1000
@@ -43,6 +41,20 @@ services:
     restart: always
     networks:
       - xss
+
+  # Unactivated
+  unactivated-web:
+      build: "./Web/Unactivated"
+      ports:
+        - "1301:3000"
+      restart: always
+
+  # Authentification
+  auth-web:
+      build: "./Web/Authentification"
+      ports:                                                                                                        
+        - "1401:3000"                                                                                               
+      restart: always
 
 networks:
     xss:

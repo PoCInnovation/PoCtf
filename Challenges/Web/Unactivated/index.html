@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PoC - Unactivated</title>
+    <link rel="icon" href="icon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="lock-badge">
+        <svg viewBox="0 0 24 24" class="lock-icon">
+            <g transform="translate(0 -1)">
+                <path d="M12 1a5 5 0 00-5 5v4H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm-3 9V6a3 3 0 016 0v4H9z"/>
+            </g>
+        </svg>
+    </div>
+
+    <h1 class="title">Restricted Area</h1>
+
+    <form name="authform">
+        <input type="password" name="auth-password" placeholder="Password" disabled>
+        <button type="submit" disabled>Access</button>
+    </form>
+
+    <div id="result" class="result hidden">
+      <div class="status">
+        <span class="icon"></span>
+        <span class="text"></span>
+      </div>
+
+      <div class="flag-wrapper hidden">
+        <span class="flag"></span>
+      </div>
+    </div>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>
