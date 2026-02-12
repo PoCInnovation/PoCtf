@@ -44,18 +44,15 @@ This is an x64 ELF
 
 ### Subject - for students
 
-Find the real instruction at offset `401ad1`.
+Find the real instruction in the payload() function.
 
 Flag format: `PoC{ins}`
 
 `ins` is the instruction and it's operand(s), as seen in a disassambler.
 
-**hint 1**
-This instruction is found in a malicious function.
-
 ### Solve
 
-If we analyse the code at offset 401ad1, we see a function `decode_and_crypt`.  
+If we analyse the code, we see a function `decode_and_crypt`.  
 If we run the code step by step, we see it's changing itself.
 
 It's actually decoding the payload function.  
@@ -68,8 +65,7 @@ Other way to solve: decode the function yourself:
 From the previous exercice, we know the where to find the encryption key.  
 We can see it's a XOR, so juste XOR the function with the key.
 
-**`Flag: PoC{call_0x4011a0_<socket@plt>}`**  
-Flag regex: `PoC{call.*0x4011a0.*<socket@plt>}`
+Flag regex: `PoC\{call 0x[0-9a-fA-F]+ <socket@plt>\}`
 
 
 ### Explanation
