@@ -1,0 +1,13 @@
+/* ===== GLOBAL THEME TEST ===== */
+
+html, body {
+    background: #05070c !important;
+    color: #00ffcc !important;
+    font-family: monospace !important;
+}
+
+/* GLOBAL TEST VISUEL */
+* {
+    outline: 1px solid rgba(0,255,204,0.05);
+}
+

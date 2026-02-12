@@ -2,7 +2,7 @@
     <div class="container">
         <a href="{{ url_for('views.static_html', route='/') }}" class="navbar-brand">
             {% if Configs.ctf_logo %}
-                <img class="img-responsive ctf_logo" src="{{ url_for('views.files', path=Configs.ctf_logo) }}" height="25" alt="{{ Configs.ctf_name }}">
+                <img class="img-responsive ctf_logo" src="{{ url_for('views.files', path=Configs.ctf_logo) }}" height="50" alt="{{ Configs.ctf_name }}">
             {% else %}
                 {{ Configs.ctf_name }}
             {% endif %}

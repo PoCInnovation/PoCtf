@@ -1,7 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<div class="container">
-	{{ content | safe }}
-	</div>
+<section class="home-hero">
+  <div class="home-container">
+
+    <h1>Welcome to PoCTF</h1>
+
+    <p class="home-subtitle">
+      The PoCTF is a CTF made by french research and development center PoC Innovation based in Paris.
+    </p>
+	<br>
+    <h2>Rules and how it works</h2>
+    <p class="home-rules">
+        1<sup>st</sup> rule of PoCTF is : <strong>you do not complain about the challenges</strong>.<br>
+        2<sup>nd</sup> rule of PoCTF is : <strong>you do not complain about the challenges</strong>.<br>
+        3<sup>rd</sup> rule : <strong>You do not attack the platform</strong> itself or any services attached to poc-innovation.com
+        <em>(Big Brother is watching you).</em><br>
+        4<sup>th</sup> rule : <strong>You do not attack other participants</strong>. This is a CTF, not a street fight.<br><br>
+
+        To solve a challenge, there is only one objective : <strong>find the flag and submit it.</strong><br>
+        Flags are <strong>not</strong> shared (obviously).<br><br>
+
+        If this is the first time you've heard about PoC, feel free to follow us on social media :
+    </p>
+
+    <div class="home-socials">
+      <a href="https://x.com/POCInnovation" target="_blank" class="social-btn x">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://github.com/poc-innovation" target="_blank" class="social-btn github">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.instagram.com/pocinnovation/" target="_blank" class="social-btn instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+
+	<br>
+
+    <div class="home-actions">
+      <a href="/challenges" class="btn btn-secondary">
+        Start the challenge
+      </a>
+      <a href="/register" class="btn btn-secondary">
+        Join the CTF
+      </a>
+    </div>
+
+  </div>
+</section>
 {% endblock %}
