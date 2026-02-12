@@ -5,7 +5,7 @@ import weakref
 from distutils.version import StrictVersion
 
 import jinja2
-from flask import Flask, Request
+from flask import Flask, Request, url_for, get_flashed_messages, request, session, g, url_for as flask_url_for
 from flask_migrate import upgrade
 from jinja2 import FileSystemLoader
 from jinja2.sandbox import SandboxedEnvironment
@@ -42,25 +42,49 @@ class CTFdRequest(Request):
         """
         return self.script_root + super(CTFdRequest, self).path
 
-
+    
 class CTFdFlask(Flask):
     def __init__(self, *args, **kwargs):
-        """Overriden Jinja constructor setting a custom jinja_environment"""
-        self.jinja_environment = SandboxedBaseEnvironment
         self.session_interface = CachingSessionInterface(key_prefix="session")
         self.request_class = CTFdRequest
 
-        # Store server start time
         self.start_time = datetime.datetime.utcnow()
-
-        # Create generally unique run identifier
         self.run_id = sha256(str(self.start_time))[0:8]
-        Flask.__init__(self, *args, **kwargs)
+
+        super().__init__(*args, **kwargs)
 
     def create_jinja_environment(self):
-        """Overridden jinja environment constructor"""
-        return super(CTFdFlask, self).create_jinja_environment()
+        """
+        Create a sandboxed Jinja environment that still behaves like
+        Flask's default environment (globals, context, helpers).
+        """
+        # 1. Let Flask create its normal environment
+        env = super().create_jinja_environment()
 
+        # 2. Convert it to a sandboxed environment
+        sandbox_env = SandboxedEnvironment(
+            loader=env.loader,
+            autoescape=env.autoescape,
+            extensions=env.extensions,
+        )
+
+        # 3. Mark url_for as safe for the sandbox
+        flask_url_for.alters_data = False
+        flask_url_for.unsafe_callable = False
+
+        # 4. Reinject Flask globals (CRITICAL)
+        sandbox_env.globals.update(
+            env.globals,
+            url_for=flask_url_for,
+            get_flashed_messages=get_flashed_messages,
+            request=request,
+            session=session,
+            g=g,
+            config=self.config,
+        )
+
+        return sandbox_env
+    
 
 class SandboxedBaseEnvironment(SandboxedEnvironment):
     """SandboxEnvironment that mimics the Flask BaseEnvironment"""
@@ -70,6 +94,21 @@ class SandboxedBaseEnvironment(SandboxedEnvironment):
             options["loader"] = app.create_global_jinja_loader()
         SandboxedEnvironment.__init__(self, **options)
         self.app = app
+
+        flask_url_for.alters_data = False
+        flask_url_for.unsafe_callable = False
+
+        self.globals.update(
+            url_for=flask_url_for,
+            get_flashed_messages=get_flashed_messages,
+            config=app.config,
+            request=request,
+            session=session,
+            g=g,
+        )
+
+        if self.cache is not None:
+            self.cache.clear()
 
     def _load_template(self, name, globals):
         if self.loader is None:

@@ -59,7 +59,7 @@ def confirm(data=None):
             name=user.name,
         )
         db.session.commit()
-        clear_user_session(user_id=user.id)
+        clear_user_session(user_id=user.id) 
         email.successful_registration_notification(user.email)
         db.session.close()
         if current_user.authed():

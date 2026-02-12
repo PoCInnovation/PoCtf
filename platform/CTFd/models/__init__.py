@@ -22,7 +22,7 @@ def get_class_by_tablename(tablename):
     for c in db.Model._decl_class_registry.values():
         if hasattr(c, "__tablename__") and c.__tablename__ == tablename:
             return c
-    return None
+        return None
 
 
 class Notifications(db.Model):
@@ -130,22 +130,22 @@ class Hints(db.Model):
     def category(self):
         return self.__tablename__
 
-    @property
-    def description(self):
-        return "Hint for {name}".format(name=self.challenge.name)
+        @property
+        def description(self):
+            return "Hint for {name}".format(name=self.challenge.name)
 
-    @property
-    def html(self):
-        from CTFd.utils.config.pages import build_html
-        from CTFd.utils.helpers import markup
+        @property
+        def html(self):
+            from CTFd.utils.config.pages import build_html
+            from CTFd.utils.helpers import markup
 
-        return markup(build_html(self.content))
+            return markup(build_html(self.content))
 
-    def __init__(self, *args, **kwargs):
-        super(Hints, self).__init__(**kwargs)
+        def __init__(self, *args, **kwargs):
+            super(Hints, self).__init__(**kwargs)
 
-    def __repr__(self):
-        return "<Hint %r>" % self.content
+        def __repr__(self):
+            return "<Hint %r>" % self.content
 
 
 class Awards(db.Model):
@@ -455,7 +455,7 @@ class Teams(db.Model):
     created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
 
     def __init__(self, **kwargs):
-        super(Teams, self).__init__(**kwargs)
+         super(Teams, self).__init__(**kwargs)
 
     @validates("password")
     def validate_password(self, key, plaintext):
@@ -653,7 +653,7 @@ class Solves(Submissions):
 
 
 class Fails(Submissions):
-    __mapper_args__ = {"polymorphic_identity": "incorrect"}
+   __mapper_args__ = {"polymorphic_identity": "incorrect"}
 
 
 class Unlocks(db.Model):

@@ -99,6 +99,7 @@ def init_template_globals(app):
     app.jinja_env.globals.update(get_current_team_attrs=get_current_team_attrs)
     app.jinja_env.globals.update(get_ip=get_ip)
     app.jinja_env.globals.update(Configs=Configs)
+    app.context_processor(lambda: {"Configs": Configs})
     app.jinja_env.globals.update(Plugins=Plugins)
     app.jinja_env.globals.update(Session=Session)
     app.jinja_env.globals.update(Forms=Forms)
